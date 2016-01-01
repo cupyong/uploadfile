@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+    #fileuploader Upload
+    script.
+      $(document).ready(function () {
+        $("#fileuploader").uploadFile({
+          url: "/fileupload/",
+          fileName: "myfile",
+          multiple: true,
+          dragDrop: true,
+          showDownload: true,
+          showDelete: true,
+          onSuccess: function (files, response, xhr, pd) {
+            alert(JSON.stringify(files));
+          }
+        });
+      });
